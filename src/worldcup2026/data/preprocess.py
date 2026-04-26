@@ -61,3 +61,10 @@ def build_match_history() -> pd.DataFrame:
     df.to_parquet(out_path, index=False)
     log.info("wrote %s rows -> %s", len(df), out_path)
     return df
+
+def load_match_history() -> pd.DataFrame:
+    """Load the preprocessed match history parquet."""
+    path = PATHS.processed / "match_history.parquet"
+    if not path.exists():
+        raise FileNotFoundError("run the pipeline first — match_history.parquet missing")
+    return pd.read_parquet(path)
