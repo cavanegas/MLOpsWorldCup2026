@@ -1,0 +1,4 @@
+n_simulations: 2000
+seed: 42
+# If empty the default contenders list from `config.py` is used.
+teams_override: []
