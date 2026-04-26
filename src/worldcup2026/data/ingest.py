@@ -59,3 +59,10 @@ def load_martj42() -> pd.DataFrame:
     df["away_score"] = df["away_score"].astype(int)
     df["neutral"] = df["neutral"].astype(bool)
     return df
+
+def ingest_all(force: bool = False) -> dict[str, Path]:
+    """Download all datasets and return a dict of {name: path}."""
+    paths = {}
+    paths["martj42_results"] = download_martj42_results(force=force)
+    paths.update(download_fjelstul(force=force))
+    return paths
