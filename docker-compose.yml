@@ -1,0 +1,24 @@
+services:
+  api:
+    build: .
+    image: worldcup2026:latest
+    container_name: wc2026-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./mlruns:/app/mlruns
+      - ./models_store:/app/models_store
+    environment:
+      - MLFLOW_TRACKING_URI=/app/mlruns
+      - MODEL_PATH=/app/models_store/champion_model.joblib
+      - DATA_DIR=/app/data
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.11.3
+    container_name: wc2026-mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlruns
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri file:/mlruns

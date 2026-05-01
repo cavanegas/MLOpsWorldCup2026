@@ -34,3 +34,4 @@ data/external/*
 htmlcov/
 .ruff_cache/
 .mypy_cache/
+mlruns.db
