@@ -1,7 +1,10 @@
 # MLOpsWorldCup2026 — Predicción del Campeón del Mundial FIFA 2026
-**Maria del Rosario Gonzalez Marrugo
-**Carlos Daniel Vanegas Sanchez
-**David Andres Rios Arboleda
+**Maria del Rosario Gonzalez Marrugo**
+**
+**Carlos Daniel Vanegas Sanchez**
+
+**David Andres Rios Arboleda**
+
 **Proyecto Final MLOps — Universidad de Medellín**
 
 Proyecto MLOps end-to-end, reproducible, que predice al ganador del Mundial de
@@ -178,7 +181,7 @@ uv run mlflow ui --backend-store-uri ./mlruns --port 5000
 
 ## 4. Cobertura de la rúbrica de peer review
 
-### ✅ 1. Reproducibilidad
+### 1. Reproducibilidad
 - Un `pip install -e .` o `uv pip install -e .` deja un entorno funcional.
 - Toda corrida lleva semilla fija (`seed=42`); los cachés son archivos parquet
   deterministas.
@@ -186,7 +189,7 @@ uv run mlflow ui --backend-store-uri ./mlruns --port 5000
   humana.
 - Las fuentes son CSV estáticos en GitHub raw — no se requieren API keys.
 
-### ✅ 2. Experiment Tracking (MLflow)
+### 2. Experiment Tracking (MLflow)
 Implementado en `src/worldcup2026/models/train.py`:
 - `mlflow.set_experiment("worldcup2026")`.
 - Loguea **parámetros**: nombre de modelo, todos los hiperparámetros, fracción
@@ -199,7 +202,7 @@ Implementado en `src/worldcup2026/models/train.py`:
 - Registra el modelo en el Model Registry como `wc2026_match_classifier` y
   opcionalmente lo promueve a `Staging` o `Production` con tags por algoritmo.
 
-### ✅ 3. Pipeline / Orquestación (Prefect)
+### 3. Pipeline / Orquestación (Prefect)
 `src/worldcup2026/pipeline/flow.py` define un flow
 (`worldcup2026_pipeline`) con siete tareas: `ingest`, `preprocess`,
 `validate_data`, `elo`, `features`, `train`, `simulate`. Cada paso es un
@@ -221,7 +224,7 @@ python scripts/deploy_prefect.py
 # (usa CronSchedule "0 6 * * MON", zona horaria America/Bogota)
 ```
 
-### ✅ 4. Deployment
+### 4. Deployment
 Tres modos de consumo vienen listos:
 
 **a) Servicio FastAPI** — `src/worldcup2026/api/app.py`
@@ -257,7 +260,7 @@ docker run -p 8000:8000 worldcup2026
 docker compose up
 ```
 
-### ✅ 5. Monitoreo (Fase 5 — Diseño)
+### 5. Monitoreo (Fase 5 — Diseño)
 `src/worldcup2026/monitoring/` contiene el diseño y scripts base:
 
 - **Data drift** — `monitoring/drift.py` compara la distribución de Elo y
@@ -279,7 +282,7 @@ Ejecutar el chequeo de drift:
 python -m worldcup2026.monitoring.drift --reference data/processed/training_dataset.parquet
 ```
 
-### ✅ 6. Calidad de código y documentación
+### 6. Calidad de código y documentación
 - Organización en 7 sub-paquetes enfocados (ver árbol arriba).
 - `ruff` + `black` configurados en `pyproject.toml`:
   ```bash
