@@ -1,5 +1,7 @@
 # MLOpsWorldCup2026 — Predicción del Campeón del Mundial FIFA 2026
-
+**Maria del Rosario Gonzalez Marrugo
+**Carlos Daniel Vanegas Sanchez
+**David Andres Rios Arboleda
 **Proyecto Final MLOps — Universidad de Medellín**
 
 Proyecto MLOps end-to-end, reproducible, que predice al ganador del Mundial de
